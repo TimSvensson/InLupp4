@@ -54,7 +54,7 @@ public class Register {
 	String s = null;
 
 	if(this.isOpen()) {
-	    s = "[" + this.queue.first().getGroceries()  + "]" + this.queue.toString();
+	    s = "   [" + this.queue.first().getGroceries()  + "]" + this.queue.toString();
 	} else {
 	    s = " x [ ]";
 	}

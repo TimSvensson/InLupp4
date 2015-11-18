@@ -14,25 +14,19 @@ public class Store {
 	    r = new Register();
 	}
     }
-
     public int getAverageQueueLength() {
 	int lengthOfAllQueues = 0;
-
 	for(Register r : registers) {
 	    lengthOfAllQueues += r.getQueueLength();
 	}
-
 	return lengthOfAllQueues / this.numberOfRegisters;
     }
-
     public void newCustomer(Customer c) {
 	Register r = this.getShortestQueue();
 	r.addToQueue(c);
     }
-
     private Register getShortestQueue() {
 	Register shortest = this.registers[0];
-
 	for(Register r : this.registers) {
 	    if(r.isOpen()) {
 		if(r.getQueueLength() < shortest.getQueueLength()) {
@@ -42,13 +36,11 @@ public class Store {
 	}
 	return shortest;
     }
-
     public void step() {
 	for(Register r : registers) {
 	    r.step();
 	}
     }
-
     public void openNewRegister() {
 	for(Register r : registers) {
 	    if(!r.isOpen()) {
@@ -57,14 +49,17 @@ public class Store {
 	    }
 	}
     }
-
-    public void getDoneCustomers() {
-	
+    public Customer getDoneCustomers() {
+	Customer c = null;
+	try {
+	    c = this.registers[0].removeCurrentCustomer();
+	} catch (RuntimeException e) {
+	    System.out.println(e.getMessage());
+	}
+	return c;
     }
-
     public String toString() {
 	String s = null;
-
 	for(Register r : registers) {
 	    s = r.toString() + "\n";
 	}
