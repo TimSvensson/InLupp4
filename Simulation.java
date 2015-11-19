@@ -17,6 +17,11 @@ public class Simulation {
 	this.store = new Store(numberOfRegisters, thresholdForNewRegister);
     }
 
+    
+    /**
+     * Steps the time counter with one
+     */
+    
     public void step() {
 	this.time += 1;
 	this.store.step();
@@ -25,23 +30,45 @@ public class Simulation {
 	    Customer c = createNewCustomer();
 	    AddCustomerToStore(c);
 	}
-	int averageRegisterLength = getAverageRegisterLength();
+	int averageRegisterLength = getAverageQueueLength();
 
 	this.doneCustomers.addAll(this.store.getDoneCustomers());
     }
 
-    private int getAverageRegisterLength() {
+
+    /**
+     * Finds the average queue length
+     */
+    
+    private int getAverageQueueLength() {
 	return this.store.getAverageQueueLength();
     }
+
+    
+    /**
+     * Adds a customer to the store
+     *
+     * @param the added customer c
+     */
 
     private void AddCustomerToStore(Customer c) {
 	this.store.newCustomer(c);
     }
 
+    
+    /**
+     * Checks wheter a new customer is wanted or not
+     */
+
     private boolean newCustomer() {
 	int number = random.nextInt(100);
 	return number < intensity;
     }
+
+
+    /**
+     * Creates a new customer
+     */
 
     private Customer createNewCustomer() {
 	int grocerise = random.nextInt(this.maxGroceries);
