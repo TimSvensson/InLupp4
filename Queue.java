@@ -63,7 +63,7 @@ public class Queue<T> {
     /**
      * Removes the first customer in queue
      */
-    
+
     public T dequeue() {
 	T firstElement = first.element;
 	if (this.first == null) {
@@ -75,6 +75,11 @@ public class Queue<T> {
 	this.length = this.length -1;
 	return firstElement;
     }
+
+	 /**
+     * Returns the first customer in queue
+     */
+
     public T first() {
 	if (this.first == null) {
 	    throw new NullPointerException();
