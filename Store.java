@@ -8,7 +8,7 @@ public class Store {
 
 
     /**
-     * documentation
+     * Creates all the registers in the store
      */
     
     public Store(int numberOfRegisters, int thresholdForNewRegister) {
