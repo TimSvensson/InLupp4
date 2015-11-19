@@ -3,22 +3,43 @@ public class Register {
     private boolean open;
     private Queue<Customer> queue;
 
+
+ 	/**
+     * Creates the register
+     */
+
     public Register() {
 	this.open = false;
 	this.queue = new Queue<Customer>();
     }
 
+    /**
+     * Opens the register
+     */
+
     public void open() {
 	this.open = true;
     }
+
+    /**
+     * Closes the register
+     */
 
     public void close() {
 	this.open = false;
     }
 
+    /**
+     * Checks wheter the register is open or not
+     */
+
     public boolean isOpen() {
 	return this.open;
     }
+
+    /**
+     * Steps the time counter with one
+     */
 
     public void step() {
 	if(hasCustomers()) {
@@ -28,10 +49,18 @@ public class Register {
 	}
     }
 
+    /**
+     * Checks wheter the register has customers or not
+     */
+
     public boolean hasCustomers() {
 	if (getQueueLength() > 0) { return true; }
 	else { return false; }
     }
+
+    /**
+     * Checks wheter the current customer is done or not
+     */
 
     public boolean currentCustomerIsDone() {
 	Customer c;
@@ -43,9 +72,19 @@ public class Register {
 	return c.isDone();
     }
 
+    /**
+     * Add a customer last in the queue
+     *
+     * @param the customer
+     */
+
     public void addToQueue(Customer c) {
 	this.queue.enqueue(c);
     }
+
+    /**
+     * Removes and returns the last customer in the queue
+     */
 
     public Customer removeCurrentCustomer() {
 	Customer c;
@@ -56,6 +95,10 @@ public class Register {
 	}
 	return c;
     }
+
+    /**
+     * Finds out how long the queue is
+     */
 
     public int getQueueLength() {
 	int length = -1;
