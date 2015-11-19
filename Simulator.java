@@ -6,7 +6,7 @@ public class Simulator{
         for(int i = 0; i < steps; i++){
             System.out.print("\033[2J\033[;H");
             s.step();
-            System.out.println(s);
+            System.out.println(s.toString());
             Thread.sleep(100);
         }
         System.out.println("");

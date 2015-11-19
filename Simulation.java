@@ -25,7 +25,6 @@ public class Simulation {
     /**
      * Steps the time counter with one
      */
-    
     public void step() {
 	this.time += 1;
 	this.store.step();

@@ -65,18 +65,15 @@ public class Store {
 	return shortest;
     }
 
-
     /**
      * Steps the time counter in the store with one
      */
-
     public void step() {
 	for(Register r : registers) {
 	    
 	    r.step();
 	}
     }
-
 
     /**
      * Opens a new register
@@ -90,8 +87,6 @@ public class Store {
 	    }
 	}
     }
-
-
 
     /**
      * Return all done customers in the current time step
@@ -112,9 +107,9 @@ public class Store {
     }
 
     public String toString() {
-	String s = null;
+	String s = "";
 	for(Register r : registers) {
-	    s = r.toString() + "\n";
+	    s += r.toString() + "\n";
 	}
 	return s;
     }
