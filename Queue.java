@@ -1,3 +1,8 @@
+
+/**
+ * This class provides methodes for the queue
+ */
+
 public class Queue<T> {
     private Node first;
     private Node last; 
