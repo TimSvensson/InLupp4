@@ -43,12 +43,4 @@ public class Customer {
     public String toString() {
 	return "@";
     }
-
-
-    public static void main(String[] args) throws InterruptedException{
-
-        Customer kund = new Customer(0, 0);
-        System.out.println(kund);
-        return 0;
-    }
 }

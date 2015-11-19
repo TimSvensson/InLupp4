@@ -16,7 +16,7 @@ default: $(CLASSES) clean
 
 clean:
 	@echo "##\tMAKE\tCleaning upp"
-	@$(RM) *~
+	@$(RM) *~ *#
 
 run: $(CDIR)/Simulator.class
 	java -cp $(CDIR) Simulator.class

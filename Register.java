@@ -29,12 +29,17 @@ public class Register {
     }
 
     public boolean hasCustomers() {
-	if(getQueueLength() > 0) { return true; }
+	if (getQueueLength() > 0) { return true; }
 	else { return false; }
     }
 
     public boolean currentCustomerIsDone() {
-	Customer c = this.queue.first();
+	Customer c;
+	try {
+	    c = this.queue.first();
+	} catch (NullPointerException e) {
+	    return false;
+	}
 	return c.isDone();
     }
 
@@ -43,18 +48,32 @@ public class Register {
     }
 
     public Customer removeCurrentCustomer() {
-	return this.queue.dequeue();
+	Customer c;
+	try {
+	    c = this.queue.dequeue();
+	} catch (NullPointerException e) {
+	    c = null;
+	}
+	return c;
     }
 
     public int getQueueLength() {
-	return this.queue.length();
+	int length = -1;
+	try {
+	    length = this.queue.length();
+	} catch (NullPointerException e) {
+	    length = 0;
+	}
+	return length;
     }
 
     public String toString() {
 	String s = null;
 
-	if(this.isOpen()) {
+	if(this.isOpen() && this.hasCustomers()) {
 	    s = "   [" + this.queue.first().getGroceries()  + "]" + this.queue.toString();
+	} else if (this.isOpen()) {
+	    s = "   [ ]";
 	} else {
 	    s = " x [ ]";
 	}

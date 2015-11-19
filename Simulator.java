@@ -7,7 +7,7 @@ public class Simulator{
             System.out.print("\033[2J\033[;H");
             s.step();
             System.out.println(s);
-            Thread.sleep(500);
+            Thread.sleep(100);
         }
         System.out.println("");
         System.out.println("Simulation finished!");

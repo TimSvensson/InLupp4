@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 public class Store { 
-    Register[] registers;
+    ArrayList<Register> registers;
    
     int numberOfRegisters;
     int thresholdForNewRegister;
@@ -7,13 +9,15 @@ public class Store {
     public Store(int numberOfRegisters, int thresholdForNewRegister) {
 	this.numberOfRegisters = numberOfRegisters;
 	this.thresholdForNewRegister = thresholdForNewRegister;
+	this.registers = new ArrayList<Register>();
 
-	registers = new Register[numberOfRegisters];
-
-	for(Register r : registers) {
-	    r = new Register();
+	for(int i = 0; i < numberOfRegisters; i++) {
+	    this.registers.add(new Register());
 	}
+
+	this.registers.get(0).open();
     }
+
     public int getAverageQueueLength() {
 	int lengthOfAllQueues = 0;
 	for(Register r : registers) {
@@ -21,12 +25,14 @@ public class Store {
 	}
 	return lengthOfAllQueues / this.numberOfRegisters;
     }
+
     public void newCustomer(Customer c) {
 	Register r = this.getShortestQueue();
 	r.addToQueue(c);
     }
+
     private Register getShortestQueue() {
-	Register shortest = this.registers[0];
+	Register shortest = this.registers.get(0);
 	for(Register r : this.registers) {
 	    if(r.isOpen()) {
 		if(r.getQueueLength() < shortest.getQueueLength()) {
@@ -36,11 +42,14 @@ public class Store {
 	}
 	return shortest;
     }
+
     public void step() {
 	for(Register r : registers) {
+	    
 	    r.step();
 	}
     }
+
     public void openNewRegister() {
 	for(Register r : registers) {
 	    if(!r.isOpen()) {
@@ -49,15 +58,21 @@ public class Store {
 	    }
 	}
     }
-    public Customer getDoneCustomers() {
-	Customer c = null;
-	try {
-	    c = this.registers[0].removeCurrentCustomer();
-	} catch (RuntimeException e) {
-	    System.out.println(e.getMessage());
+
+    public ArrayList<Customer> getDoneCustomers() {
+	ArrayList<Customer> doneCustomers = new ArrayList<Customer>();
+	for(Register r : registers) {
+	    if(r.isOpen()) {
+		if(r.hasCustomers()) {
+		    if(r.currentCustomerIsDone()) {
+			doneCustomers.add(r.removeCurrentCustomer());
+		    }
+		}
+	    }
 	}
-	return c;
+	return doneCustomers;
     }
+
     public String toString() {
 	String s = null;
 	for(Register r : registers) {

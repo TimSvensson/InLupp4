@@ -35,7 +35,7 @@ public class Queue<T> {
     public T dequeue() {
 	T firstElement = first.element;
 	if (this.first == null) {
-	    throw new RuntimeException("The queue is empty");
+	    throw new NullPointerException();
 	}
 	else {
 	    this.first = this.first.next;
@@ -45,7 +45,7 @@ public class Queue<T> {
     }
     public T first() {
 	if (this.first == null) {
-	    throw new RuntimeException("The queue is empty");
+	    throw new NullPointerException();
 	}
 	else {
 	    return this.first.element;

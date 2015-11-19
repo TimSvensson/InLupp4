@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Simulation {
     Store store;
@@ -7,6 +8,8 @@ public class Simulation {
     int intensity;
     int maxGroceries;
     int thresholdForNewRegister;
+
+    ArrayList<Customer> doneCustomers = new ArrayList<Customer>();
 
     Random random = new Random();
 
@@ -24,7 +27,7 @@ public class Simulation {
 	}
 	int averageRegisterLength = getAverageRegisterLength();
 
-	//hämta alla kunder och för statestik
+	this.doneCustomers.addAll(this.store.getDoneCustomers());
     }
 
     private int getAverageRegisterLength() {
@@ -47,6 +50,6 @@ public class Simulation {
     }
 
     public String toString() {
-	return "Stuff";
+	return this.store.toString();
     }
 }
