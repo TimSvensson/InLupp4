@@ -1,3 +1,8 @@
+
+/**
+ * This class provides methods for a customer
+ */
+
 public class Customer {
     private int bornTime;
     private int groceries;
