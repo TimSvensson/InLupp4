@@ -1,6 +1,10 @@
 import java.util.Random;
 import java.util.ArrayList;
 
+/**
+ * This class contains methods for simulating the actions in the store
+ */
+
 public class Simulation {
     Store store;
 
