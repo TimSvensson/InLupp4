@@ -39,12 +39,15 @@ public class Customer {
     public boolean isDone() {
 	return groceries == 0;
     }
+
     public int getGroceries() {
 	return this.groceries;
     }
+
     public int getBornTime() {
 	return this.bornTime;
     }
+
     public String toString() {
 	return "@";
     }
