@@ -3,7 +3,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	CustomerTest.class
+	CustomerTest.class,
+	    QueueTest.class,
+	    RegisterTest.class
 	    })
 
 	    public class TestAll

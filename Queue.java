@@ -39,14 +39,14 @@ public class Queue<T> {
     }
 
     /**
- 	* The length of the queue
- 	*/
+     * The length of the queue
+     */
 
     public int length() {
 	return length; 
     }
 
-	/**
+    /**
      * Sets a element last in the queue
      *
      * @param the element
@@ -72,7 +72,7 @@ public class Queue<T> {
     public T dequeue() {
 	T firstElement = first.element;
 	if (this.first == null) {
-	    throw new NullPointerException();
+	    throw new RuntimeException("The queue is empty");
 	}
 	else {
 	    this.first = this.first.next;
@@ -87,7 +87,7 @@ public class Queue<T> {
 
     public T first() {
 	if (this.first == null) {
-	    throw new NullPointerException();
+	    throw new RuntimeException("The queue is empty");
 	}
 	else {
 	    return this.first.element;

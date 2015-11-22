@@ -29,7 +29,9 @@ public class Customer {
      */
 
     public void serve() {
-	groceries--;
+	if (groceries > 0) {
+	    groceries--;
+	}
     }
 
     /**

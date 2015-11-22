@@ -27,7 +27,7 @@ $(CDIR)/%.class: $(JDIR)/%.java
 default: $(CLASSES) clean
 
 test: 
-	javac -cp $(CLASSPATH) *.java
+	javac -Xlint -cp $(CLASSPATH) *.java
 	java -cp $(CLASSPATH) $(JUNITTEST) TestAll
 	rm -fr *.class
 
