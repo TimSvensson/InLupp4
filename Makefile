@@ -35,5 +35,8 @@ clean:
 	@echo "##\tMAKE\tCleaning upp"
 	@$(RM) *~ *#
 
-run: $(CDIR)/Simulator.class
-	java -cp $(CDIR) Simulator.class
+jar: default
+	cd $(CDIR) && jar cfe InLupp4.jar Simulator *.class
+
+run: jar
+	java -jar $(CDIR)/InLupp4.jar

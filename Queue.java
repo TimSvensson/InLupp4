@@ -12,21 +12,20 @@ public class Queue<T> {
 	private T element;
 	private Node next;
 	
-
-
-
 	/**
 	 * Creates a Node
 	 *
 	 * @param The element the node contains
 	 */
-	
 	public Node (T element) {
 	    this.element = element;
 	    next = null;
 	}
+	
+	public String toString() {
+	    return element.toString();
+	}
     }
-
 
     /**
      * Creates a queue
@@ -41,7 +40,6 @@ public class Queue<T> {
     /**
      * The length of the queue
      */
-
     public int length() {
 	return length; 
     }
@@ -51,7 +49,6 @@ public class Queue<T> {
      *
      * @param the element
      */
-
     public void enqueue(T element) {
 	
 	Node newNode = new Node(element);
@@ -95,7 +92,7 @@ public class Queue<T> {
     }
     public String toString() {
 	Node n = this.first;
-	String s = null;
+	String s = "";
 
 	while(n != null) {
 	    s += n.toString();

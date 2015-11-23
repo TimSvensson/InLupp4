@@ -16,7 +16,6 @@ public class Register {
     /**
      * Opens the register
      */
-
     public void open() {
 	this.open = true;
     }
@@ -24,7 +23,6 @@ public class Register {
     /**
      * Closes the register
      */
-
     public void close() {
 	this.open = false;
     }
@@ -32,7 +30,6 @@ public class Register {
     /**
      * Checks wheter the register is open or not
      */
-
     public boolean isOpen() {
 	return this.open;
     }
@@ -40,19 +37,19 @@ public class Register {
     /**
      * Steps the time counter with one
      */
-
     public void step() {
 	if(hasCustomers()) {
 	    if(!currentCustomerIsDone()) {
 		this.queue.first().serve();
 	    }
+	} else {
+	    close();
 	}
     }
 
     /**
      * Checks wheter the register has customers or not
      */
-
     public boolean hasCustomers() {
 	if (getQueueLength() > 0) { return true; }
 	else { return false; }
@@ -61,7 +58,6 @@ public class Register {
     /**
      * Checks wheter the current customer is done or not
      */
-
     public boolean currentCustomerIsDone() {
 	Customer c;
 	try {
@@ -71,13 +67,11 @@ public class Register {
 	}
 	return c.isDone();
     }
-
     /**
      * Add a customer last in the queue
      *
      * @param the customer
      */
-
     public void addToQueue(Customer c) {
 	this.queue.enqueue(c);
     }
@@ -85,7 +79,6 @@ public class Register {
     /**
      * Removes and returns the last customer in the queue
      */
-
     public Customer removeCurrentCustomer() {
 	Customer c;
 	try {
@@ -99,7 +92,6 @@ public class Register {
     /**
      * Finds out how long the queue is
      */
-
     public int getQueueLength() {
 	int length = -1;
 	try {

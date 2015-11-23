@@ -6,11 +6,9 @@ public class Store {
     int numberOfRegisters;
     int thresholdForNewRegister;
 
-
     /**
      * Creates all the registers in the store
      */
-    
     public Store(int numberOfRegisters, int thresholdForNewRegister) {
 	this.numberOfRegisters = numberOfRegisters;
 	this.thresholdForNewRegister = thresholdForNewRegister;
@@ -19,41 +17,41 @@ public class Store {
 	for(int i = 0; i < numberOfRegisters; i++) {
 	    this.registers.add(new Register());
 	}
-
-	this.registers.get(0).open();
     }
 
+    private int getOpenRegisters() {
+	int openRegisters = 0;
+	for (Register r : this.registers) {
+	    if (r.isOpen()) { openRegisters++; }
+	}
+	return openRegisters;
+    }
 
     /**
      * Finds the average queue length
      */
-    
-    public int getAverageQueueLength() {
+    public int getAverageRegisterLength() {
 	int lengthOfAllQueues = 0;
 	for(Register r : registers) {
 	    lengthOfAllQueues += r.getQueueLength();
 	}
-	return lengthOfAllQueues / this.numberOfRegisters;
+	return lengthOfAllQueues / getOpenRegisters();
     }
-
 
     /**
      * Inserts a customer in the shortest queue
      *
      * @param the customer c to insert
      */
-    
     public void newCustomer(Customer c) {
 	Register r = this.getShortestQueue();
 	r.addToQueue(c);
     }
 
-
     /**
      * Finds the shortest queue 
      */
-
-    private Register getShortestQueue() {
+    private Register getShortestRegister() {
 	Register shortest = this.registers.get(0);
 	for(Register r : this.registers) {
 	    if(r.isOpen()) {
@@ -70,15 +68,24 @@ public class Store {
      */
     public void step() {
 	for(Register r : registers) {
-	    
 	    r.step();
+	}
+	if (checkOpenNewRegister()) {
+	    openNewRegister();
+	}
+    }
+
+    public boolean checkOpenNewRegister() {
+	if (getOpenRegisters() == 0) {
+	    return true;
+	} else {
+	return getAverageQueueLength() > this.thresholdForNewRegister;
 	}
     }
 
     /**
      * Opens a new register
      */
-
     public void openNewRegister() {
 	for(Register r : registers) {
 	    if(!r.isOpen()) {
@@ -91,7 +98,6 @@ public class Store {
     /**
      * Return all done customers in the current time step
      */
-
     public ArrayList<Customer> getDoneCustomers() {
 	ArrayList<Customer> doneCustomers = new ArrayList<Customer>();
 	for(Register r : registers) {
