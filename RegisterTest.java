@@ -32,10 +32,15 @@ public class RegisterTest extends TestCase
 	assertTrue(closed == false);
     }
 
-    @Test
+     @Test
     public void test_step() {
-	
-    }
+	Register reg = new Register();
+	Customer Findus = new Customer(3, 5);
+	reg.addToQueue(Findus);
+	reg.step();
+	int groceries1 = Findus.getGroceries();
+	assertTrue(groceries1 == 4);
+	}
 
     @Test
     public void test_hasCustomers() {
@@ -59,5 +64,71 @@ public class RegisterTest extends TestCase
 	reg.step();
 	boolean c = reg.currentCustomerIsDone();
 	assertTrue(c == true);
+
+	/* KOLLA OM CUSTOMER ÄR KLAR NÄR DEN INTE ÄR DET
+	Register kassa = new Register();
+	Customer Bamse = new Customer(0,2);
+	reg.addToQueue(Bamse);
+	reg.step();
+	try {
+	    reg.currentCustomerIsDone();
+	} 
+
+	#FAIL!!!
+	catch (NullPointerException e) {
+	    boolean fail = false;
+	    return fail;
+	    
+	}
+	assertTrue(fail == false); 
+	*/
+	
+
+    } 
+
+
+    @Test
+    public void test_addToQueueremoveCurrentCustomer() {
+	Register reg = new Register();
+	Customer Lilleskutt = new Customer(0, 7);
+	reg.addToQueue(Lilleskutt);
+	Customer last = reg.removeCurrentCustomer();
+	assertTrue(Lilleskutt == last);
+
+	/* NULLPOINTEREXCEPTIONS!*/
+
+	/*	Register kassa = new Register();
+	if (kassa.removeCurrentCustomer == null)
+	    {
+		boolean fail = false;
+		return fail;
+	    }
+	assertTrue(fail == false);
+	*/
     }
+    
+    @Test
+    public void test_getQueueLength() {
+	Register reg = new Register();
+	int len = reg.getQueueLength();
+	assertTrue(len == 0);
+
+	Register kassa = new Register();
+	Customer KjellKantarell = new Customer(3, 7);
+	kassa.addToQueue(KjellKantarell);
+	int length = kassa.getQueueLength();
+	assertTrue(length == 1);
+
+	Register register = new Register();
+	Customer Tom = new Customer(2, 8);
+	Customer Jerry = new Customer(9, 5);
+	register.addToQueue(Tom);
+	register.addToQueue(Jerry);
+	int leng = register.getQueueLength();
+	assertTrue(leng == 2);
+    }
+
+
+
+    
 }

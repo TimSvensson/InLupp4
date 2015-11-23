@@ -68,7 +68,7 @@ public class Register {
 	return c.isDone();
     }
     /**
-     * Add a customer last in the queue
+     * Adds a customer last in the queue
      *
      * @param the customer
      */
