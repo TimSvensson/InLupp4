@@ -26,6 +26,11 @@ public class CustomerTest extends TestCase
 	assertTrue(Calle.getGroceries() == 0);
 	Pelle.serve();
 	assertTrue(Calle.getGroceries() == 0);
+
+	Customer Nalle = new Customer(0, -1);
+	assertTrue(Nalle.getGroceries() == -1);
+	Nalle.serve();
+	assertTrue(Nalle.getGroceries() == -1);
     }
 
 

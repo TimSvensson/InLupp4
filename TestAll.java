@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	CustomerTest.class,
 	    QueueTest.class,
-	    RegisterTest.class
+	    RegisterTest.class,
+	    StoreTest.class
 	    })
 
 	    public class TestAll
