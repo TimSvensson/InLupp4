@@ -106,11 +106,15 @@ public class Register {
 	String s = null;
 
 	if(this.isOpen() && this.hasCustomers()) {
-	    s = "   [" + this.queue.first().getGroceries()  + "]" + this.queue.toString();
+	    if (this.queue.first().getGroceries() < 10) {
+		s = "   [ " + this.queue.first().getGroceries()  + "]" + this.queue.toString();
+	    } else {
+		s = "   [" + this.queue.first().getGroceries()  + "]" + this.queue.toString();
+	    }
 	} else if (this.isOpen()) {
-	    s = "   [ ]";
+	    s = "   [  ]";
 	} else {
-	    s = " x [ ]";
+	    s = " x [  ]";
 	}
 	return s;
     }

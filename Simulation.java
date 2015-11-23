@@ -13,14 +13,51 @@ public class Simulation {
     int maxGroceries;
     int thresholdForNewRegister;
 
-    ArrayList<Customer> doneCustomers = new ArrayList<Customer>();
-
     Random random = new Random();
+    Meta meta = new Meta();
 
-    public Simulation(int numberOfRegisters, int thresholdForNewRegister, int intensity) {
+    private class Meta {
+	int customersServed;
+	int maxWaitTime;
+	float averageWaitTime;
+	int totalWaitTime;
+
+	private Meta() {
+	    this.customersServed = 0;
+	    this.maxWaitTime = 0;
+	    this.averageWaitTime = 0;
+	    this.totalWaitTime = 0;
+	}
+
+	public void step(ArrayList<Customer> doneCustomers, int time) {
+	    this.customersServed += doneCustomers.size();
+	    for (Customer c : doneCustomers) {
+		int timeWaiting = time - c.getBornTime();
+		this.totalWaitTime += timeWaiting;
+		if (timeWaiting > maxWaitTime) {
+		    maxWaitTime = timeWaiting;
+		}
+	    }
+	    try {
+		this.averageWaitTime = (float)this.totalWaitTime / (float)this.customersServed;
+	    } catch (ArithmeticException e) {
+		this.averageWaitTime = 0;
+	    }
+	}
+
+	public String toString() {
+	    String s = "";
+	    s += "Number of customers served: " + this.customersServed + "\n";
+	    s += "Max wait-time: " + this.maxWaitTime + "\n";
+	    s += "Average wait-time: " + this.averageWaitTime + "\n";
+	    return s;
+	}
+    }
+
+    public Simulation(int numberOfRegisters, int thresholdForNewRegister, int intensity, int maxGroceries) {
 	this.store = new Store(numberOfRegisters, thresholdForNewRegister);
 	this.intensity = intensity;
-	this.maxGroceries = 5;
+	this.maxGroceries = maxGroceries;
     }
 
     /**
@@ -29,21 +66,18 @@ public class Simulation {
     public void step() {
 	this.time += 1;
 	this.store.step();
-
 	if(customerArrives()) {
 	    Customer c = createNewCustomer();
 	    AddCustomerToStore(c);
 	}
-	int averageRegisterLength = getAverageQueueLength();
-
-	this.doneCustomers.addAll(this.store.getDoneCustomers());
+	this.meta.step(this.store.getDoneCustomers(), this.time);
     }
 
     /**
      * Finds the average queue length
      */
     private int getAverageQueueLength() {
-	return this.store.getAverageQueueLength();
+	return this.store.getAverageRegisterLength();
     }
     
     /**
@@ -75,6 +109,7 @@ public class Simulation {
     public String toString() {
 	String s = "Store\n\n";
 	s += this.store.toString();
+	s += "\n\n" + this.meta.toString() + "\n";
 	return s;
     }
 }

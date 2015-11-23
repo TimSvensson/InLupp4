@@ -44,7 +44,7 @@ public class Store {
      * @param the customer c to insert
      */
     public void newCustomer(Customer c) {
-	Register r = this.getShortestQueue();
+	Register r = this.getShortestRegister();
 	r.addToQueue(c);
     }
 
@@ -79,7 +79,7 @@ public class Store {
 	if (getOpenRegisters() == 0) {
 	    return true;
 	} else {
-	return getAverageQueueLength() > this.thresholdForNewRegister;
+	return getAverageRegisterLength() > this.thresholdForNewRegister;
 	}
     }
 

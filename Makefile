@@ -33,7 +33,7 @@ test:
 
 clean:
 	@echo "##\tMAKE\tCleaning upp"
-	@$(RM) *~ *#
+	@$(RM) *~ *# .#*
 
 jar: default
 	cd $(CDIR) && jar cfe InLupp4.jar Simulator *.class
