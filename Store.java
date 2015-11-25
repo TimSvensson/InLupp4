@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 
-public class Store { 
+
+	/**
+ 	* This class provides methodes for the Store
+ 	*/
+
+	public class Store { 
     ArrayList<Register> registers;
    
     int numberOfRegisters;

@@ -1,3 +1,7 @@
+/**
+ * This class provides methodes for the registers
+ */
+
 public class Register {
 
     private boolean open;

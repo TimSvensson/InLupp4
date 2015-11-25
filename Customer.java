@@ -33,10 +33,16 @@ public class Customer {
 	return groceries == 0;
     }
 
+    /**
+    * Returns the customers amount of groceries
+    */
     public int getGroceries() {
 	return this.groceries;
     }
 
+    /**
+    *Returns the customers borntime
+    */
     public int getBornTime() {
 	return this.bornTime;
     }
