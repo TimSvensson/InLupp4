@@ -19,6 +19,9 @@ public class Store {
 	}
     }
 
+    /**
+     * Finds out how many registers are open
+     */
     private int getOpenRegisters() {
 	int openRegisters = 0;
 	for (Register r : this.registers) {
@@ -75,6 +78,9 @@ public class Store {
 	}
     }
 
+    /**
+     * Checks if a new register needs to be opened
+     */
     public boolean checkOpenNewRegister() {
 	if (getOpenRegisters() == 0) {
 	    return true;
@@ -96,7 +102,7 @@ public class Store {
     }
 
     /**
-     * Return all done customers in the current time step
+     * Returns all done customers in the current time step
      */
     public ArrayList<Customer> getDoneCustomers() {
 	ArrayList<Customer> doneCustomers = new ArrayList<Customer>();
@@ -119,4 +125,13 @@ public class Store {
 	}
 	return s;
     }
+
+
+    
+    //ONLY FOR TESTING
+    public int getResultgetOpenRegisters() {
+	int amount = getOpenRegisters();
+	return amount;
+    }
+
 }
