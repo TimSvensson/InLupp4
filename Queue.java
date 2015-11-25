@@ -68,27 +68,16 @@ public class Queue<T> {
 
     public T dequeue() {
 	T firstElement = first.element;
-	if (this.first == null) {
-	    throw new RuntimeException("The queue is empty");
-	}
-	else {
-	    this.first = this.first.next;
-	}
+	this.first = this.first.next;
 	this.length = this.length -1;
 	return firstElement;
     }
 
-	 /**
+    /**
      * Returns the first customer in queue
      */
-
     public T first() {
-	if (this.first == null) {
-	    throw new RuntimeException("The queue is empty");
-	}
-	else {
-	    return this.first.element;
-	}
+	return this.first.element;
     }
     public String toString() {
 	Node n = this.first;
