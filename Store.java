@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 
 
-	/**
- 	* This class provides methodes for the Store
- 	*/
-
-	public class Store { 
+/**
+ * This class provides methodes for the Store
+ */
+public class Store {
     ArrayList<Register> registers;
    
     int numberOfRegisters;
@@ -72,7 +71,7 @@ import java.util.ArrayList;
     }
 
     /**
-     * Steps the time counter in the store with one
+     * Steps the time counter in the store by one
      */
     public void step() {
 	for(Register r : registers) {

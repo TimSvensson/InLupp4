@@ -4,7 +4,6 @@ import java.util.ArrayList;
 /**
  * This class contains methods for simulating the actions in the store
  */
-
 public class Simulation {
     Store store;
 
@@ -16,6 +15,9 @@ public class Simulation {
     Random random = new Random();
     Meta meta = new Meta();
 
+    /**
+     * This class contains all recorded data from the simulated store
+     */
     private class Meta {
 	int customersServed;
 	int maxWaitTime;
@@ -29,6 +31,12 @@ public class Simulation {
 	    this.totalWaitTime = 0;
 	}
 
+	/**
+	 * Step the simulation forward by one time unit
+	 *
+	 * @param doneCustomers - The customers that finished shopping this unit of time.
+	 * @param time - The current time.
+	 */
 	public void step(ArrayList<Customer> doneCustomers, int time) {
 	    this.customersServed += doneCustomers.size();
 	    for (Customer c : doneCustomers) {
@@ -90,7 +98,7 @@ public class Simulation {
     }
     
     /**
-     * Checks wheter a new customer is wanted or not
+     * Checks if a new customer arrives to the registers
      */
     private boolean customerArrives() {
 	int number = random.nextInt(100);
